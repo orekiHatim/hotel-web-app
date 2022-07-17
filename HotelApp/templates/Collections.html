@@ -1,0 +1,277 @@
+{% extends 'mastermain.html '%}
+{% load static %}
+{% block content %}
+    <div class="container-fluid  ">
+        <div class="row mt-3 mb-3  align-content-center align-items-center ">
+            <div class="col-sm-6 col-12">
+                <h3 class="txtwhitecolor ms-2">Collections & Rooms</h3>
+            </div>
+            <div class="col-sm-6 col-12 text-end">
+                <button class="hotelbtn bgprimarycolor txtwhitecolor fw-bold mt-1 ">
+                
+                    <a href=" {% url 'addModel' name='collections' %} " class=" text-decoration-none txtwhitecolor" >   <i class="fa-solid fa-plus txtpinkcolor"></i> Add Collection
+                    </a>
+                </button>
+                <button class="hotelbtn bgprimarycolor txtwhitecolor fw-bold mt-1 ">
+                    <a href=" {% url 'addModel' name='rooms' %} " class=" text-decoration-none txtwhitecolor" >     <i class="fa-solid fa-plus txtpinkcolor"></i> Add Room 
+                        </a>
+                </button>
+            </div>
+        </div>
+        <div class="row mt-4 mb-3 ">
+            {% if collist %}
+          {% for i in collist %}
+            <!-- collection -->
+            <div class="  col-lg-6 col-md-12 col-sm-12 col-12 d-flex justify-content-center ">
+                <div class="collectionlistitems bgprimarycolor p-3 myborderraduis mt-2 myshadow6 ">
+                    <!-- collection header-->
+                    <div class="row d-flex align-content-center collectionlistitemsactions pb-3 mb-4">
+                        <div class="col-6">
+                            <span class=" txtpinkcolor me-2 fw-bold ">{{i.CollectionName}}</span> <span class=" p-2 myborderraduis bgseccolor txtwhitecolor ">{{i.rooms_set.all.count}} Rooms</span>
+                        </div>
+                        <div class="col-6 text-end">
+                            <div class="btn-group">
+                                <button type="button" class=" mydropdowndecoration " data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                                    <i class="fa-solid fa-ellipsis  txtgraycolor"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-lg-end bgprimarycolor ">
+                                  <li><button class="dropdown-item txtwhitecolor" type="button"><i class="fa-solid fa-pen-to-square txtwhitecolor me-2"></i>Update</button></li>
+                                  <li><button class="dropdown-item txtwhitecolor" type="button"  data-bs-toggle="modal" data-bs-target="#hotelmodel{{i.id}}"><i class="fa-solid fa-trash-can txtwhitecolor me-2"></i>Delete </button></li>
+                                </ul>
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="hotelmodel{{i.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog bgprimarycolor ">
+                            <div class="modal-content bgprimarycolor ">
+                                <div class="modal-header">
+                                    <i class="fa-solid fa-ban txtpinkcolor me-3 fs-5"></i>
+                                <h5 class="modal-title txtwhitecolor fw-bold" id="exampleModalLabel ">Delete ? </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body txtwhitecolor text-start">
+                                    Are you sure you want to permanently delete this {{i.CollectionName}} Collection  ? 
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="hotelbtn bgseccolor txtwhitecolor" data-bs-dismiss="modal">Close</button>
+                                <form action="{% url 'deletemodel' id=i.id name=i.class_name|lower  %} " method="POST">
+                                    {% csrf_token %}
+                                <button type="submit" class="hotelbtn bgpinkcolor txtwhitecolor">Save changes  </button>
+                                </div>
+                            </form>
+                            </div>
+                            </div>
+                        </div>
+<!-- Modal  en-->
+
+                              </div>
+                        </div>
+                       <div class="row mt-3 collectionsdetailsrow">
+                           <div class="col-12">
+                            <span class="txtwhitecolor">Details : </span><br>
+                           </div>
+                           <div class="col-12 text-center">
+                               <div class="collectiondetailsiconscontainer w-100 mt-2">
+                                {% if i.Shower == 'y' %}
+                               <div class="collectiondetailsicons hotelbtn bgseccolor   mt-1">
+                                <i class="fa-solid fa-shower txtcyancolor"></i>
+                               </div>
+                               {% endif %}
+                               {% if i.Tv == 'y' %}
+                               <div class="collectiondetailsicons hotelbtn bgseccolor   mt-1">
+                                <i class="fa-solid fa-tv txtcyancolor"></i>
+                               </div>
+                               {% endif %}
+                               {% if i.Clima == 'y' %}
+                               <div class="collectiondetailsicons hotelbtn bgseccolor   mt-1">
+                                <i class="fa-solid fa-snowflake txtcyancolor"></i>
+                               </div>
+                               {% endif %}
+                               {% if i.Wifi == 'y' %}
+                               <div class="collectiondetailsicons hotelbtn bgseccolor   mt-1">
+                                <i class="fa-solid fa-wifi txtcyancolor"></i>
+                               </div>
+                               {% endif %}
+                               {% if i.Pool == 'y' %}
+                               <div class="collectiondetailsicons hotelbtn bgseccolor   mt-1">
+                                <i class="fa-solid fa-gamepad txtcyancolor"></i>
+                               </div>
+                               {% endif %}
+                               {% if i.Breakfast == 'y' %}
+                               <div class="collectiondetailsicons hotelbtn bgseccolor  mt-1">
+                                <i class="fa-solid fa-mug-hot txtcyancolor"></i>
+                               </div>
+                               {% endif %}
+                               {% if i.Dinner == 'y' %}
+                               <div class="collectiondetailsicons hotelbtn bgseccolor   mt-1">
+                                <i class="fa-solid fa-burger txtcyancolor"></i>
+                               </div>
+                               {% endif %}
+                               {% if i.Balcony == 'y' %}
+                               <div class="collectiondetailsicons hotelbtn bgseccolor   mt-1">
+                                <i class="fa-solid fa-mountain txtcyancolor"></i>
+                               </div>
+                               {% endif %}
+                            </div>
+                            <div class="collectionsbeds mt-3">
+                                <div class="collectiondetailsicons hotelbtn bgseccolor   mt-1">
+                                    <i class="fa-solid fa-bed txtcyancolor me-2"></i><span class="txtwhitecolor fw-bold">King Size : {{i.KingSize}}</span>
+                                   </div>
+                                   <div class="collectiondetailsicons hotelbtn bgseccolor   mt-1">
+                                    <i class="fa-solid fa-bed txtcyancolor me-2"></i><span class="txtwhitecolor fw-bold">Queen Size : {{i.QueenSize}}</span>
+                                   </div>
+                                  
+                                   <div class="collectiondetailsicons hotelbtn bgseccolor   mt-1">
+                                    <i class="fa-solid fa-bed txtcyancolor me-2"></i><span class="txtwhitecolor fw-bold">Single Size :  {{i.SingleSize}}</span>
+                                   </div>
+                                  
+                                  <div class="row mt-2">
+                                      <div class="col-6 ">
+                                        <div class="collectiondetailsicons hotelbtn bgseccolor   mt-1 w-100">
+                                            <i class="fa-solid fa-money-bill  txtcyancolor me-2"></i><span class="txtwhitecolor fw-bold">Price :  {{i.price}} DH</span>
+                                           </div>
+                                      </div>
+                                      <div class="col-6">
+                                        <div class="collectiondetailsicons hotelbtn bgseccolor   mt-1 w-100">
+                                            <span class="txtwhitecolor fw-bold ">Stars :</span>
+                                            {% if i.Stars == 1 %}
+                                            <i class="fa-solid fa-star txtyellowcolor"></i>
+                                            {% endif %}
+                                          
+                                            {% if i.Stars == 2 %}
+                                            <i class="fa-solid fa-star txtyellowcolor"></i>
+                                            <i class="fa-solid fa-star txtyellowcolor"></i>
+                                            {% endif %}
+                                          
+                                            {% if i.Stars == 3 %}
+                                            <i class="fa-solid fa-star txtyellowcolor"></i>
+                                            <i class="fa-solid fa-star txtyellowcolor"></i>
+                                            <i class="fa-solid fa-star txtyellowcolor"></i>
+                                            {% endif %}
+                                          
+                                            {% if i.Stars == 4 %}
+                                            <i class="fa-solid fa-star txtyellowcolor"></i>
+                                            <i class="fa-solid fa-star txtyellowcolor"></i>
+                                            <i class="fa-solid fa-star txtyellowcolor"></i>
+                                            <i class="fa-solid fa-star txtyellowcolor"></i>
+                                            {% endif %}
+                                          
+                                            {% if i.Stars == 5 %}
+                                            <i class="fa-solid fa-star txtyellowcolor"></i>
+                                            <i class="fa-solid fa-star txtyellowcolor"></i>
+                                            <i class="fa-solid fa-star txtyellowcolor"></i>
+                                            <i class="fa-solid fa-star txtyellowcolor"></i>
+                                            <i class="fa-solid fa-star txtyellowcolor"></i>
+                                            {% endif %}
+                                          
+                                           </div>
+                                      </div>
+                                      
+                                  </div>
+                            </div>
+                            
+                           </div>
+                       </div>
+                    </div>
+     <!-- collection header end-->
+
+                     <!-- collection body -->
+                <div class="row mt-2 mb-1 roomsscroll" style="max-height: 400px;overflow-y: scroll;min-height:auto">
+
+                 {% for d in i.rooms_set.all %}
+    <!-- collection room  header -->
+ 
+                    <div class="col-12 mt-2">
+                        <div class="collectionlistroomitems bgseccolor p-3 myborderraduis">
+                            <div class="row d-flex align-content-center  pb-3">
+                                <div class="col-6">
+                                    <span class=" txtwhitecolor me-2 fw-bold hotelbtn  myborderraduis">Room Number :{{d.RoomNumber}} </span>
+                                </div>
+                                <div class="col-6 text-end">
+                                    <div class="btn-group">
+                                        <button type="button" class=" mydropdowndecoration " data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                                            <i class="fa-solid fa-ellipsis  txtgraycolor"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-lg-end bgseccolor ">
+                                          <li><button class="dropdown-item txtwhitecolor" type="button"><i class="fa-solid fa-pen-to-square txtwhitecolor me-2"></i>Update</button></li>
+                                          <li><button class="dropdown-item txtwhitecolor" type="button"  data-bs-toggle="modal" data-bs-target="#hotelroommodel{{d.id}}"><i class="fa-solid fa-trash-can txtwhitecolor me-2"></i>Delete</button></li>
+                                        </ul>
+                                      </div>
+
+                                                              <!-- Modal -->
+                        <div class="modal fade" id="hotelroommodel{{d.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog bgprimarycolor ">
+                            <div class="modal-content bgprimarycolor ">
+                                <div class="modal-header">
+                                    <i class="fa-solid fa-ban txtpinkcolor me-3 fs-5"></i>
+                                <h5 class="modal-title txtwhitecolor fw-bold" id="exampleModalLabel ">Delete ? </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body txtwhitecolor text-start">
+                                    Are you sure you want to permanently delete Room {{d.RoomNumber}} ? 
+                                   
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="hotelbtn bgseccolor txtwhitecolor" data-bs-dismiss="modal">Close</button>
+                                    <form action="{% url 'deletemodel' id=d.id name=d.class_name|lower %} " method="POST">
+                                        <button type="submit" class="hotelbtn bgpinkcolor txtwhitecolor">Save changes</button>
+                                        {% csrf_token %}
+                                    </form>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+<!-- Modal  en-->
+
+                                  
+                                </div>
+                            </div>
+
+                            <!-- image -->
+                            {% if d.RoomImage %}
+                          <div class="collectionsroomsimg myborderraduis" style="height:200px;width:100%;background: url('{{d.RoomImage.url}}');background-size: cover;background-position: center;">
+                          </div>
+                          {% else %}
+                          <div class="collectionsroomsimg myborderraduis bgcyancolor " style="height:200px;width:100%;"> 
+                              <h3 class=" txtwhitecolor text-center align-content-center align-items-center h-100" >Room Image Soon</h3>
+                        </div>
+                          {% endif %}
+                                <!-- image end-->
+                        </div>
+                    </div>
+                      <!-- collection room  header end-->
+                     
+                   
+                      {% endfor %}
+                     
+                      <div class="col-12">
+
+                      </div>
+                </div>
+                      <!-- collection body end-->
+                   
+
+                </div>
+            </div>
+                <!-- collection end-->
+                {% endfor %}
+                {% else %}
+                <div class=" row emptycollection  vh-100  justify-content-center align-content-center text-center align-items-center"  >
+                    <div class="col-12 ">
+                        <img src="{% static 'images/emptycollection.png' %}" class="ms-4 img-fluid " style="max-width: 200px;" >
+                  <h1 class=" txtwhitecolor " >Collections & Rooms are  Empty</h1>
+                </div>
+                       {% endif %}
+                <div class="col-12">
+                </div>
+                 
+                   
+
+
+                </div>
+        </div>
+
+    </div>
+
+
+    
+    {% endblock  %}

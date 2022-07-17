@@ -1,0 +1,110 @@
+{% extends 'mastermain.html '%}
+{% load static %}
+{% block content %}
+
+
+<div class="container-fluid">
+<div class="row mt-5 ms-2 me-2">
+    <h1 class=" txtwhitecolor " >{{ test }}</h1>
+    <div class="col-12 bggraycolor myborderraduis mt-3">
+
+        {% if mycount > 0 %}
+
+        {% if test == "Reservations" or test == "Reservations_History"  %}
+       <div class="row  txtwhitecolor bgpinkcolor  p-2" style="  border-top-left-radius:  5px;
+       border-top-right-radius: 5px;" >
+         <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center fw-bold">ClientId</div>
+         <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center fw-bold">Room Id</div>
+         <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center fw-bold">DateD</div>
+         <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center fw-bold">DateF</div>
+         <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center fw-bold">Total</div>
+         <div class="col-lg-2 col-md-3 col-sm-4 col-12 text-center fw-bold">
+          Actions
+         </div>
+       </div>
+       {% for i in modellist %}
+       <div class="row  txtwhitecolor bgprimarycolor  p-2">
+        <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center fw-bold ">{{i.ClientId}}</div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center fw-bold">{{i.roomId.RoomNumber}}</div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center fw-bold">{{i.DateD}}</div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center fw-bold">{{i.DateF}}</div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center fw-bold">{{i.Total}}</div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-12 text-center fw-bold">
+          <form action="{% url 'deletemodel' id=i.id name=test|lower %} " method="POST">
+            <button type="submit" class="hotelbtn bgpinkcolor txtwhitecolor w-100">Delete</button>
+            {% csrf_token %}
+        </form>
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <div class="row  txtwhitecolor bgpinkcolor  p-2" style="  border-top-left-radius:  5px;
+      border-top-right-radius: 5px;" >
+        <div class="col-lg-1 col-md-3 col-sm-4 col-6 text-center fw-bold">User Id</div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center fw-bold">Email</div>
+        <div class="col-lg-1 col-md-3 col-sm-4 col-6 text-center fw-bold">Username</div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center fw-bold">First Name</div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center fw-bold">Last Name</div>
+        <div class="col-lg-2 col-md-4 col-sm-4 col-6 text-center fw-bold">Date_joined</div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-12 text-center fw-bold">
+         Actions
+        </div>
+      </div>
+      {% for i in modellist %}
+      <div class="row  txtwhitecolor bgprimarycolor  p-2">
+       <div class="col-lg-1 col-md-3 col-sm-4 col-6 text-center fw-bold ">{{i.id}}</div>
+       <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center fw-bold">{{i.email}}</div>
+       <div class="col-lg-1 col-md-3 col-sm-4 col-6 text-center fw-bold">{{i.username}}</div>
+       <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center fw-bold">{{i.first_name}}</div>
+       <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center fw-bold">{{i.last}}</div>
+       <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center fw-bold">{{i.date_joined}}</div>
+       <div class="col-lg-2 col-md-3 col-sm-4 col-12 text-center fw-bold">
+         <form action="{% url 'deletemodel' id=i.id name=test|lower %} " method="POST">
+           <button type="submit" class="hotelbtn bgpinkcolor txtwhitecolor w-100">Delete</button>
+           {% csrf_token %}
+       </form>
+       </div>
+     </div>
+     {% endfor %}
+      {% endif %}
+ 
+      {% else %}
+    </div>
+
+    {% if test == "Reservations"  %}
+    <div class="container-fluid bgseccolor mt-5">
+      <div class="row w-100 h-100  ">
+        <div class="col-12  text-center">
+          <img src="{% static 'images/emptyreservations.svg' %} " alt="" style="max-width: 250px;">
+          <h1 class=" txtwhitecolor mt-2" >Empty List </h1>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if test == "Reservations_History" %}
+    <div class="container-fluid bgseccolor mt-5">
+      <div class="row w-100 h-100  ">
+        <div class="col-12  text-center">
+          <img src="{% static 'images/emptyreservations.svg' %} " alt="" style="max-width: 250px;">
+          <h1 class=" txtwhitecolor mt-2" >Empty List </h1>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if test == "User"  %}
+    <div class="container-fluid bgseccolor mt-5">
+    <div class="row w-100 h-100  ">
+      <div class="col-12  text-center">
+        <img src="{% static 'images/emptyuser.svg' %} " alt="" style="max-width: 250px;">
+        <h1 class=" txtwhitecolor mt-2" >Empty List </h1>
+      </div>
+    </div>
+  </div>
+    {% endif %}
+    </div>
+  </div>
+ 
+  {% endif %}
+{% endblock  %}

@@ -1,0 +1,96 @@
+{% load static %}
+           <!-- menu -->
+            <div class="col-lg-2  col-md-3 col-sm-12 col-12 bgprimarycolor position-relative roomsscroll myshadow5 " style="border-right:1px solid var(--gray);overflow-y: scroll; " >
+            
+                <div class="row mt-5 p-2   " style="min-height: 100vh;max-height:100vh">
+                    <div class="col-12 mb-3 ">
+                    <img src="{% static 'images/mylogo.png' %}" class="ms-4 img-fluid " alt="" style="max-width: 150px;max-height:75px;">
+                </div>
+                <div class="col-12 mt-4">
+                    <span class="txtgraycolor ms-4">Menu</span>
+                </div>
+                <a href=" " class=" text-decoration-none ">
+                <div class="col-12 mt-2 mb-2  ">
+                   
+                    
+                    <!--<div class="dahsboarmenuitem   pt-3 pb-3  myborderraduis ">
+                        <i class="fa-solid fa-border-all ms-4 txtgraycolor dahsboarmenuitemicone "></i> <span class="txtgraycolor ms-3 fw-bold dahsboarmenuitemicone ">Dashboard</span>
+                    </div>-->
+                    <a href=" {% url 'modellist' name='dashbaord'  %} " class=" text-decoration-none ">
+                        <div class="dahsboarmenuitem   pt-3 pb-3  myborderraduis ">
+                          
+                            <i class="fa-solid fa-folder ms-4 txtgraycolor dahsboarmenuitemicone"></i> <span class="txtgraycolor ms-3 fw-bold dahsboarmenuitemicone ">Dashboard</span>
+                     
+                        </div>
+                    </a>
+           
+                </div>
+           
+             
+                <div class="col-12 mt-2 mb-2  ">
+                    <a href=" {% url 'modellist' name='user'  %} " class=" text-decoration-none ">
+                    <div class="dahsboarmenuitem   pt-3 pb-3  myborderraduis ">
+                        <i class="fa-solid fa-user ms-4 txtgraycolor dahsboarmenuitemicone"></i> <span class="txtgraycolor ms-3 fw-bold dahsboarmenuitemicone ">Users</span>
+                    </div>
+                    </a>
+                </div>
+
+                <div class="col-12 mt-2 mb-2  ">
+                    <a href=" {% url 'collectionsandrooms'  %} " class=" text-decoration-none ">
+                    <div class="dahsboarmenuitem   pt-3 pb-3  myborderraduis ">
+                      
+                        <i class="fa-solid fa-folder ms-4 txtgraycolor dahsboarmenuitemicone"></i> <span class="txtgraycolor ms-3 fw-bold dahsboarmenuitemicone ">Collections</span>
+                 
+                    </div>
+                    </a>
+                </div>
+         
+                <div class="col-12 mt-2 mb-2  ">
+                    <a href=" {% url 'modellist' name='reservations'  %} " class=" text-decoration-none ">
+                    <div class="dahsboarmenuitem   pt-3 pb-3  myborderraduis ">
+                        <i class="fa-solid fa-clipboard-list ms-4 txtgraycolor dahsboarmenuitemicone"></i> <span class="txtgraycolor ms-3 fw-bold dahsboarmenuitemicone ">Reservations</span>
+                 
+                    </div>
+                </a>
+                </div>
+     
+
+                <div class="col-12 mt-2 mb-2  ">
+                    <a href=" {% url 'modellist' name='reservations_history'  %} " class=" text-decoration-none ">
+                    <div class="dahsboarmenuitem   pt-3 pb-3  myborderraduis ">
+                        <i class="fa-solid fa-clipboard-check ms-4 txtgraycolor dahsboarmenuitemicone"></i> <span class="txtgraycolor ms-3 fw-bold dahsboarmenuitemicone ">Reservations History</span>
+             
+                    </div>
+                    </a>
+                </div>
+
+                <div class="col-12 mt-4">
+                    <span class="txtgraycolor ms-4">General</span>
+                </div>
+
+                <div class="col-12 mt-2 mb-2  dashboardlogout ">
+                    <a href="" class=" text-decoration-none">
+                    <div class="dahsboarmenuitem   pt-3 pb-3  myborderraduis ">
+                        <i class="fa-solid fa-gear ms-4 txtgraycolor dahsboarmenuitemicone"></i> <span class="txtgraycolor ms-3 fw-bold dahsboarmenuitemicone ">Settings</span>
+                    
+                    </div>
+                    </a>
+                </div>
+
+                <div class="col-12 mt-2 mb-2  dashboardlogout ">
+                    <a href="{% url 'logout' %}" class=" text-decoration-none">
+                    <div class="dahsboarmenuitem   pt-3 pb-3  myborderraduis ">
+                        <i class="fa-solid fa-arrow-right-from-bracket ms-4 txtgraycolor dahsboarmenuitemicone"></i> <span class="txtgraycolor ms-3 fw-bold dahsboarmenuitemicone ">Log Out</span>
+                    
+                    </div>
+                    </a>
+                </div>
+
+
+                </div>
+                <div class="row "> 
+                   
+                </div>
+                </div>
+          
+                <!-- menu end -->

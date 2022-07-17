@@ -1,0 +1,46 @@
+{% extends 'mastermain.html '%}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="addmodel bgwhitecoloe  ">
+    <div class="container">
+    <div class="row  justify-content-center align-content-center text-center align-items-center">
+        <div class="col-12 mt-4">
+            <h5 class=" txtpinkcolor ">Add {{modelName}}</h5>
+        </div>
+        <div class="col-12">
+            
+            <!--<form action="" method="POST">
+                <div class="form-group">
+                    {% csrf_token %}
+                    <input type="number" min="0"  name="number" required placeholder="Room Number" class=" form-control" ><br>
+                    <select name="colid" id="" class=" form-control"  >
+                        {% for i in collist %}
+                        <option   value="{{i.id}}">{{i.CollectionName}}</option>
+                        {% endfor %}
+                    </select><br>
+                    <input type="file" name="image" required class=" form-control" >
+                    
+
+                <input type="submit" class="hotelbtn  txtwhitecolor bgpinkcolor w-100 mt-2 mb-2" value="ADD">
+            </div>
+            </form>-->
+
+            
+         
+            <form action="" method="POST">
+                <div class="form-group">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class="hotelbtn  txtwhitecolor bgpinkcolor w-100 mt-2 mb-2" value="ADD">
+            </div>
+            </form>
+            
+        </div>
+        
+    </div>
+</div>
+</div>
+</div>
+ 
+{% endblock  %}
